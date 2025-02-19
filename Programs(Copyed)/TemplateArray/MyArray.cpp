@@ -8,7 +8,7 @@ public:
 	Myarray(int capacity) {                   //有参构造
 		this->capacity = capacity;
 		this->a_size = 0;
-		this->p = new T[this->capacity]; //堆区开辟数组
+		this->p = new T[this->capacity]; //堆区开辟数组,返回的指针由 this->p接收
 		cout << "有参构造" << endl;
 	}
 
@@ -38,6 +38,21 @@ public:
 			this->p[i] = arr.p[i];
 		}
 		return *this;
+	}
+
+	void Push_Back(const T& val) {
+		if (this->capacity == this->a_size) { return; }
+		this->p[this->a_size] = val;  //头指针位移至尾，插入元素
+		this->a_size++;
+	}
+
+	void Pop_Back() {
+		if (this->a_size == 0) { return; }
+		this->a_size--;//减小长度的方式删除尾素
+	}
+
+	T& operator[](int index) {  //[]重载,实现通过数组下标访问元素 //返回值类型为T,且使用引用&，使其可以作为=左值存在
+		return this->p[index];
 	}
 
 	~Myarray() {
