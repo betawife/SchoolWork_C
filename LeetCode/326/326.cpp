@@ -3,10 +3,10 @@ using namespace std;
 
 class Solution {
 public:
-    bool isPowerOfThree(int n) {  //使用递归，3的n次幂特点：能一直被3整除
-        if (n == 0)return false;  //上一次返回false，未被3整除
-        if (n == 1)return true;   //上一次返回true，被3整除
-        if (n % 3 != 0)return false;   //不是3倍数,返回false(0)
-        return isPowerOfThree(n / 3);
+    bool isPowerOfThree(int n) {  //3^n特点：能一直被3整除至1
+        if (n == 0)return false;  //用于最后一次判断 ，传参  n/3=0
+        if (n == 1)return true;   //用于最后一次判断 ，传参  n/3=1
+        if (n % 3 != 0)return false;   //判断每次传入的n是否可以被整除
+        return isPowerOfThree(n / 3);  //递归调用，传值n/3
     }
 };
