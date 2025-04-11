@@ -5,9 +5,9 @@ using namespace std;
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<vector<int>> dp(n, vector<int>(m, 0)); //二维数组dp,用来存储该位到(n-1,m-1)的所有路径数
-                                                   //观察特殊位置，如最右下角的四个格子dp[n-2][m-2]=dp[n-1][m-2]+dp[n-2][m-1]，得规律：非边缘dp[i][j]=dp[i+1][j]+dp[i][j+1]
-        // 处理边界dp,路径数都是1
+        vector<vector<int>> dp(n, vector<int>(m, 0)); //二维数组dp,用来存储该位到(n-1,m-1)的所有路径数：该位到终点所有路径数 = 下一步(向右或下)的路径数的和
+                                                   
+        // 处理边界dp,路径数都是1 (右下边界) 
         for (int i = 0; i < n; i++) {
             dp[i][m - 1] = 1;
         }
